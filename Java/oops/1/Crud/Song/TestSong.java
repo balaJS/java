@@ -14,8 +14,12 @@ class TestSong {
 //		System.out.print("  " + munpaniya.getCompany());
 //		System.out.println("");
 
-		short status = Db.save(munpaniya);
-		String msg = status == 1 ? "stored" : "not stored";
-		System.out.println("Song was " + msg);
+//		Boolean status = Db.save(munpaniya);
+//		String msg = status ? "stored" : "not stored";
+//		System.out.println("Song was " + msg);
+		munpaniya.setId(2);
+		Boolean status = Db.delete(munpaniya.getId());
+		String dltMsg = status ? "deleted." : "not deleted.";
+		System.out.println("The song was " + dltMsg);
 	}
 }

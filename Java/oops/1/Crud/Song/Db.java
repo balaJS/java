@@ -12,8 +12,8 @@ class Db {
 		return conn;
 	}
 
-	public static short save(Song song) {
-		short status = 0;
+	public static Boolean save(Song song) {
+		short statusNo = 0;
 		Connection conn = Db.getConn();
 		PreparedStatement ps;
 		try {
@@ -23,11 +23,29 @@ class Db {
 			ps.setString(3, song.getSinger());
 			ps.setString(4, song.getCompany());
 
-			status = (short) ps.executeUpdate();
+			statusNo = (short) ps.executeUpdate();
+			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return status;
+		return (statusNo == 1);
+	}
+
+	public static Boolean delete(int id) {
+		short statusNo = 0;
+		Connection conn = Db.getConn();
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement("delete from song where id = ?");
+			ps.setInt(1, id);
+
+			statusNo = (short) ps.executeUpdate();
+			conn.close();
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return (statusNo == 1);
 	}
 }
