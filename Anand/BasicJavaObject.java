@@ -77,7 +77,7 @@ class Human extends Animal {
 class BasicJavaObject {
     // Run the code
     public static void main(String args[]) {
-        // Animal is an object
+        // animal is an object
         // Animal animal = new Animal();
 
         // // legs is one of the animal state or data.
